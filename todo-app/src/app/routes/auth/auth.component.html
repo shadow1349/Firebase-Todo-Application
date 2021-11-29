@@ -47,6 +47,7 @@
                     mat-button
                     class="google-button"
                     style="margin-top: 20px"
+                    (click)="googleAuth('sign-in')"
                   >
                     Sign in with Google
                   </button>
@@ -57,7 +58,7 @@
                 <div fxLayout="column">
                   <form
                     fxLayout="column"
-                    [formGroup]="loginForm"
+                    [formGroup]="registerForm"
                     (submit)="signUp($event)"
                   >
                     <mat-form-field appearance="outline">
@@ -94,6 +95,7 @@
                     mat-button
                     class="google-button"
                     style="margin-top: 20px"
+                    (click)="googleAuth('sign-up')"
                   >
                     Sign up with Google
                   </button>

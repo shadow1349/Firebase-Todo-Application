@@ -26,18 +26,16 @@ export class AuthService {
       .then((credential) => this.handleAuth(credential, 'sign-up'));
   }
 
-  loginWithGoogle() {
-    return this.googleAuth('sign-in');
-  }
-
-  registerWithGoogle() {
-    return this.googleAuth('sign-up');
-  }
-
-  private googleAuth(type: 'sign-in' | 'sign-up') {
+  googleAuth(type: 'sign-in' | 'sign-up') {
     return this.auth
       .signInWithPopup(new firebase.auth.GoogleAuthProvider())
       .then((credential) => this.handleAuth(credential, type));
+  }
+
+  logout() {
+    return this.auth.signOut().then(() => {
+      this.router.navigate(['/auth']);
+    });
   }
 
   private handleAuth(

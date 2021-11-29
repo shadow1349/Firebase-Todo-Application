@@ -51,5 +51,7 @@ export class AuthComponent implements OnInit {
     );
   }
 
-  googleAuth() {}
+  googleAuth(type: 'sign-in' | 'sign-up') {
+    return this.auth.googleAuth(type);
+  }
 }
