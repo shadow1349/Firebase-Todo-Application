@@ -1,1 +1,108 @@
-<p>auth works!</p>
+<mat-sidenav-container class="auth-sidenav">
+  <mat-sidenav-content>
+    <div class="auth-background">
+      <div layout="row" layout-align="center start" class="auth-row">
+        <div class="auth-container">
+          <mat-card class="md-padding">
+            <mat-tab-group>
+              <mat-tab label="Sign In">
+                <h2 class="text-center">Sign into your account!</h2>
+                <div fxLayout="column">
+                  <form
+                    fxLayout="column"
+                    [formGroup]="loginForm"
+                    (submit)="logIn($event)"
+                  >
+                    <mat-form-field appearance="outline">
+                      <mat-label>Email</mat-label>
+                      <input matInput type="email" formControlName="email" />
+                      <mat-error
+                        *ngIf="
+                          loginForm.controls['email'].hasError('required') ||
+                          loginForm.controls['email'].hasError('email')
+                        "
+                      >
+                        Please enter a valid email address
+                      </mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                      <mat-label>Password</mat-label>
+                      <input
+                        matInput
+                        type="password"
+                        formControlName="password"
+                      />
+                      <mat-error
+                        *ngIf="
+                          loginForm.controls['password'].hasError('required')
+                        "
+                      >
+                        Please enter a password
+                      </mat-error>
+                    </mat-form-field>
+                    <button mat-raised-button>Sign in</button>
+                  </form>
+
+                  <button
+                    mat-button
+                    class="google-button"
+                    style="margin-top: 20px"
+                  >
+                    Sign in with Google
+                  </button>
+                </div>
+              </mat-tab>
+              <mat-tab label="Sign Up">
+                <h2 class="text-center">Create a new account!</h2>
+                <div fxLayout="column">
+                  <form
+                    fxLayout="column"
+                    [formGroup]="loginForm"
+                    (submit)="signUp($event)"
+                  >
+                    <mat-form-field appearance="outline">
+                      <mat-label>Email</mat-label>
+                      <input matInput type="email" formControlName="email" />
+                      <mat-error
+                        *ngIf="
+                          loginForm.controls['email'].hasError('required') ||
+                          loginForm.controls['email'].hasError('email')
+                        "
+                      >
+                        Please enter a valid email address
+                      </mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                      <mat-label>Password</mat-label>
+                      <input
+                        matInput
+                        type="password"
+                        formControlName="password"
+                      />
+                      <mat-error
+                        *ngIf="
+                          loginForm.controls['password'].hasError('required')
+                        "
+                      >
+                        Please enter a password
+                      </mat-error>
+                    </mat-form-field>
+                    <button mat-raised-button>Sign up</button>
+                  </form>
+
+                  <button
+                    mat-button
+                    class="google-button"
+                    style="margin-top: 20px"
+                  >
+                    Sign up with Google
+                  </button>
+                </div>
+              </mat-tab>
+            </mat-tab-group>
+          </mat-card>
+        </div>
+      </div>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

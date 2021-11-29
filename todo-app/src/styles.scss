@@ -1,4 +1,61 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.mat-drawer-side {
+  border: none;
+}
+
+.headers-align .mat-expansion-panel-header-title,
+.headers-align .mat-expansion-panel-header-description {
+  flex-basis: 0;
+}
+
+.headers-align .mat-expansion-panel-header-description {
+  justify-content: space-between;
+  align-items: center;
+}
+
+.mat-stepper-label-position-bottom .mat-horizontal-stepper-header,
+.mat-vertical-stepper-header {
+  padding: 24px 0;
+}
+
+.mat-vertical-content-container {
+  margin-left: 12px !important;
+}
+
+.mat-tab-header {
+  border-bottom: none;
+}
+
+.mat-tab-label-active {
+  div {
+    color: black;
+  }
+}
+
+.mat-tab-label {
+  width: 100% !important;
+}
+
+.mat-radio-button ~ .mat-radio-button {
+  margin-left: 0;
+}
+
+.google-button {
+  border: 2px solid #db4437 !important;
+  color: white !important;
+  background: #db4437 !important;
+}

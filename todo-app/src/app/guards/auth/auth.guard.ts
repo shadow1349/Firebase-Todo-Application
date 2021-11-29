@@ -22,7 +22,7 @@ export class AuthGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    this.auth.user.pipe(
+    return this.auth.user.pipe(
       take(1),
       map((user) => !!user),
       tap((isLoggedIn) => {
@@ -31,6 +31,5 @@ export class AuthGuard implements CanActivate {
         }
       })
     );
-    return true;
   }
 }
