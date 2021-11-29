@@ -36,7 +36,8 @@
     "predeploy": [
       "npm --prefix \"$RESOURCE_DIR\" run lint",
       "npm --prefix \"$RESOURCE_DIR\" run build"
-    ]
+    ],
+    "source": "functions"
   },
   "firestore": {
     "rules": "firestore.rules",
@@ -45,7 +46,7 @@
   "emulators": {
     "ui": {
       "enabled": true,
-      "port": 4000
+      "port": 4001
     },
     "auth": {
       "enabled": true,
@@ -58,6 +59,12 @@
     "functions": {
       "enabled": true,
       "port": "5002"
+    },
+    "storage": {
+      "enabled": true
     }
+  },
+  "storage": {
+    "rules": "storage.rules"
   }
 }
