@@ -1,11 +1,13 @@
-import * as functions from "firebase-functions";
-import * as admin from "firebase-admin";
+import * as functions from 'firebase-functions';
+import * as admin from 'firebase-admin';
 
 export const OnUserCreate = functions.auth.user().onCreate((user, context) => {
   const userDocument = {
     Id: user.uid,
     ProfilePhoto: user.photoURL,
+    ListCount: 0,
     Email: user.email,
+    CreatedOn: Date.now(),
   };
 
   return admin.firestore().doc(`Users/${userDocument.Id}`).set(userDocument);

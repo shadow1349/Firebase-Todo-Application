@@ -1,8 +1,49 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    match /{document=**} {
-      allow read, write: if false;
+
+    // Rules for users
+    match /Users/{UserId} {
+      // We won't allow anyone to create or list users
+      // User creation will be done by a firebase cloud function.
+      allow create, list: if false;
+      // We can use the wild-card UserId in order to pass to our function
+      // that will determine if the user requesting any of these actions is
+      // the owner.
+      allow read, update, delete: if isOwner(UserId);
+    }
+
+    // Rules for ToDo lists
+    match /Lists/{ListId} {
+      // Only allow users who are logged in to create a list
+      allow create: if isLoggedIn();
+      // We can use the resource.data (which will not count as a read) in order to pass
+      // the UserId of this document to see if a user should be able to read, update, list, or delete
+      // a list.
+      allow read, update, list, delete: if isOwner(resource.data.UserId);
+
+      // Rules for ToDo Items sub-collection
+      match /Items/{ItemId} {
+        // We can also see the incoming data by using request.resource.data to see if we have a matching user id
+        // if we have a matching user id then we can allow users to create. This means that we must always have a UserId
+        // when creating an item.
+        // We need to use the request.resource because when we're authenticating a create action we don't have any existing
+        // data to read from; resource.data reads an existing document, where there will be none for this action.
+        allow create: if isOwner(request.resource.data.UserId);
+        // Since we will have data that is existing in the database at this point we can use the resource.data to get the UserId.
+        allow read, update, list, delete: if isOwner(resource.data.UserId);
+      }
+    }
+
+    /***************** FUNCTIONS *****************/
+    // We can make functions that we can call to re-use certain logic around our rules.
+
+    function isOwner(uid) {
+      return request.auth != null && request.auth.uid == uid;
+    }
+
+    function isLoggedIn() {
+      return request.auth != null && request.auth.uid != null;
     }
   }
 }
