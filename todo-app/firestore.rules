@@ -30,8 +30,9 @@ service cloud.firestore {
         // We need to use the request.resource because when we're authenticating a create action we don't have any existing
         // data to read from; resource.data reads an existing document, where there will be none for this action.
         allow create: if isOwner(request.resource.data.UserId);
+        // allow read, list: if isOwner(resource.data.UserId);
         // Since we will have data that is existing in the database at this point we can use the resource.data to get the UserId.
-        allow read, update, list, delete: if isOwner(resource.data.UserId);
+        allow update, delete, read, list: if isOwner(get(/databases/$(database)/documents/Lists/$(ListId)).data.UserId);
       }
     }
 

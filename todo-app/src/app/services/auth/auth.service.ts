@@ -1,8 +1,11 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAnalytics } from '@angular/fire/compat/analytics';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
 import firebase from 'firebase/compat/app';
+import { of, switchMap } from 'rxjs';
+import { User } from 'src/app/models';
 
 @Injectable({
   providedIn: 'root',
@@ -11,7 +14,8 @@ export class AuthService {
   constructor(
     private auth: AngularFireAuth,
     private analytics: AngularFireAnalytics,
-    private router: Router
+    private router: Router,
+    private db: AngularFirestore
   ) {}
 
   loginWithEmail(email: string, password: string) {
@@ -47,5 +51,15 @@ export class AuthService {
     if (credential.user) this.analytics.setUserId(credential.user.uid);
 
     return this.router.navigate(['/home']);
+  }
+
+  getUser() {
+    return this.auth.user.pipe(
+      switchMap((user) =>
+        !!user
+          ? this.db.doc<User>(`Users/${user.uid}`).valueChanges()
+          : of(undefined)
+      )
+    );
   }
 }

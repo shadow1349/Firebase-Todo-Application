@@ -79,7 +79,7 @@ export class TodoService {
     };
 
     return this.db
-      .doc<ToDoListItem>(`Lists/${listId}/Item/${item.Id}`)
+      .doc<ToDoListItem>(`Lists/${listId}/Items/${item.Id}`)
       .set(item);
   }
 

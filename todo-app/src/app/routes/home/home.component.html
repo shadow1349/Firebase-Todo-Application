@@ -5,7 +5,11 @@
   </button>
 </mat-toolbar>
 
-<button mat-fab color="accent" (click)="createList()" class="fab-button"> <mat-icon>add</mat-icon></button>
+<p>You have {{ (user | async)?.ListCount }} Todo lists</p>
+
+<button mat-fab color="accent" (click)="createList()" class="fab-button">
+  <mat-icon>add</mat-icon>
+</button>
 
 <mat-card *ngFor="let list of lists | async" [style.margin]="'10px'">
   <mat-card-title>{{ list.Name }}</mat-card-title>
@@ -13,8 +17,10 @@
     >There are {{ list.Count }} items in this list</mat-card-subtitle
   >
   <mat-card-actions>
-    <button mat-button color="primary">View List</button>
-    <button mat-button color="warn">
+    <button mat-button color="primary" [routerLink]="['/list/' + list.Id]">
+      View List
+    </button>
+    <button mat-button color="warn" (click)="deleteList(list.Id, list.Name)">
       <mat-icon>delete</mat-icon> Delete List
     </button>
   </mat-card-actions>
