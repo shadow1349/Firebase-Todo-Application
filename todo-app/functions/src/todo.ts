@@ -27,13 +27,13 @@ export const OnListCreate = functions.firestore
 
 export const OnListDelete = functions.firestore
   .document('Lists/{ListId}')
-  .onDelete((snapshot, context) => {
+  .onDelete(async (snapshot, context) => {
     const userId = (snapshot.data() as ToDoList).UserId;
 
     const userRef = admin.firestore().doc(`Users/${userId}`);
 
     // Run transaction to update the list count for the user
-    return admin.firestore().runTransaction((transaction) =>
+    await admin.firestore().runTransaction((transaction) =>
       transaction.get(userRef).then((user) => {
         if (!user.exists) {
           return null;
@@ -49,6 +49,12 @@ export const OnListDelete = functions.firestore
         return transaction.set(userRef, data, { merge: true });
       })
     );
+
+    return admin
+      .firestore()
+      .recursiveDelete(
+        admin.firestore().collection(`Lists/${context.params['ListId']}/Items`)
+      );
   });
 
 export const OnItemCreate = functions.firestore
