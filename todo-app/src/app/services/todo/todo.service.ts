@@ -36,7 +36,7 @@ export class TodoService {
         !!user
           ? this.db
               .collection<ToDoList>('Lists', (ref) =>
-                ref.where('', '==', user.uid)
+                ref.where('UserId', '==', user.uid)
               )
               .valueChanges()
           : of([])
