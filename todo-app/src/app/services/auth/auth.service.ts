@@ -62,4 +62,8 @@ export class AuthService {
       )
     );
   }
+
+  forgotPassword(email: string) {
+    return this.auth.sendPasswordResetEmail(email);
+  }
 }
