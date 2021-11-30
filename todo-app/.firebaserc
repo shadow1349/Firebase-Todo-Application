@@ -1,14 +1,14 @@
 {
   "targets": {
-    "hs-firebase-tech-talk": {
+    "fir-tech-talk-project-2": {
       "hosting": {
         "todo-app": [
-          "hs-firebase-tech-talk"
+          "fir-tech-talk-project-2"
         ]
       }
     }
   },
   "projects": {
-    "default": "hs-firebase-tech-talk"
+    "default": "fir-tech-talk-project-2"
   }
 }

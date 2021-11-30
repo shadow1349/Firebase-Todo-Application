@@ -4,17 +4,16 @@
 
 export const environment = {
   firebase: {
-    projectId: 'hs-firebase-tech-talk',
-    appId: '1:392321960335:web:916561cecf8101a3f6a3fa',
-    databaseURL: 'https://hs-firebase-tech-talk-default-rtdb.firebaseio.com',
-    storageBucket: 'hs-firebase-tech-talk.appspot.com',
-    locationId: 'us-central',
-    apiKey: 'AIzaSyArFaUP7GU_tcBwiWRju6A-uwJGYedXzs4',
-    authDomain: 'hs-firebase-tech-talk.firebaseapp.com',
-    messagingSenderId: '392321960335',
-    measurementId: 'G-ZYHPCQ7TEY',
+    apiKey: 'AIzaSyDZUh3BGKTUCfBjjd7qqdu_OqlK2912org',
+    authDomain: 'fir-tech-talk-project-2.firebaseapp.com',
+    databaseURL: 'https://fir-tech-talk-project-2-default-rtdb.firebaseio.com',
+    projectId: 'fir-tech-talk-project-2',
+    storageBucket: 'fir-tech-talk-project-2.appspot.com',
+    messagingSenderId: '58329852743',
+    appId: '1:58329852743:web:7c2e25cd6036da08d97a62',
+    measurementId: 'G-7YJYL2J8MR',
   },
-  production: false
+  production: false,
 };
 
 /*
